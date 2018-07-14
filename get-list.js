@@ -53,9 +53,10 @@ function get(item, flag) {
 	console.log("get " + type + " " + item.id)
 	superagent
 		.get(item.href)
+		.retry(2)
 		.timeout({
 			response: 5000,
-			deadline: 600000
+			deadline: 60000
 		})
 		.end(function(err, res) {
 			if(err) {
